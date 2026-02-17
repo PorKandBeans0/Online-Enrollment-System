@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enrollment Successful - Online Enrollment System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .success-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .success-card {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.7), rgba(30, 41, 59, 0.5));
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            text-align: center;
+            max-width: 600px;
+            box-shadow: 0 20px 50px rgba(99, 102, 241, 0.2);
+            animation: slideUp 0.6s ease forwards;
+        }
+
+        .success-icon {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #10b981, #059669);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            font-size: 3rem;
+            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
+            animation: bounce 0.6s ease 0.3s forwards;
+            opacity: 0;
+        }
+
+        @keyframes bounce {
+            0% {
+                opacity: 0;
+                transform: scale(0);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .success-card h1 {
+            font-size: 2.5rem;
+            color: #10b981;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #10b981, #059669);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .success-card p {
+            color: rgba(241, 245, 249, 0.8);
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .student-id {
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .student-id label {
+            color: rgba(241, 245, 249, 0.7);
+            font-size: 0.9rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .student-id .id-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            font-family: 'Courier New', monospace;
+            letter-spacing: 2px;
+        }
+
+        .success-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(99, 102, 241, 0.4);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, rgba(148, 163, 184, 0.3), rgba(148, 163, 184, 0.2));
+            color: rgba(241, 245, 249, 0.9);
+            border: 1px solid rgba(148, 163, 184, 0.5);
+        }
+
+        .btn-secondary:hover {
+            background: linear-gradient(135deg, rgba(148, 163, 184, 0.5), rgba(148, 163, 184, 0.4));
+        }
+
+        .enrollment-details {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            text-align: left;
+        }
+
+        .enrollment-details h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.95rem;
+        }
+
+        .detail-item:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            color: rgba(241, 245, 249, 0.7);
+        }
+
+        .detail-value {
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .success-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .success-card h1 {
+                font-size: 2rem;
+            }
+
+            .success-actions {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="success-container">
+        <div class="success-card">
+            <div class="success-icon">✓</div>
+            <h1>Enrollment Successful!</h1>
+            <p>Thank you for submitting your enrollment form. Your application has been received and saved successfully.</p>
+            
+            <div class="student-id">
+                <label>Your Student ID:</label>
+                <div class="id-value">#{{ student_id }}</div>
+            </div>
+
+            <div class="enrollment-details">
+                <h3>Next Steps:</h3>
+                <div class="detail-item">
+                    <span class="detail-label">1. Confirmation Email</span>
+                    <span class="detail-value">Check your inbox</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">2. Payment Processing</span>
+                    <span class="detail-value">Via GCash</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">3. Document Verification</span>
+                    <span class="detail-value">7-10 business days</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">4. Orientation Date</span>
+                    <span class="detail-value">To be announced</span>
+                </div>
+            </div>
+
+            <p style="font-size: 0.9rem; color: rgba(241, 245, 249, 0.6); margin-top: 1.5rem;">
+                Keep your Student ID safe. You'll need it for all future transactions and inquiries.
+            </p>
+
+            <div class="success-actions">
+                <a href="{{ url_for('index') }}" class="btn btn-primary">
+                    Return to Home
+                </a>
+                <a href="/" download class="btn btn-secondary">
+                    Download Receipt
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
